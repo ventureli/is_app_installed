@@ -18,7 +18,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** IsAppInstalledPlugin */
 public class IsAppInstalledPlugin implements FlutterPlugin, ActivityAware, MethodCallHandler {
@@ -87,7 +86,7 @@ public class IsAppInstalledPlugin implements FlutterPlugin, ActivityAware, Metho
   }
 
   @Override
-  public void onAttachedToActivity(@NonNull @org.jetbrains.annotations.NotNull ActivityPluginBinding binding) {
+  public void onAttachedToActivity(@NonNull  ActivityPluginBinding binding) {
     activity = binding.getActivity();
   }
 
@@ -97,7 +96,7 @@ public class IsAppInstalledPlugin implements FlutterPlugin, ActivityAware, Metho
   }
 
   @Override
-  public void onReattachedToActivityForConfigChanges(@NonNull @org.jetbrains.annotations.NotNull ActivityPluginBinding binding) {
+  public void onReattachedToActivityForConfigChanges(@NonNull  ActivityPluginBinding binding) {
 
   }
 
