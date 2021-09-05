@@ -1,6 +1,6 @@
 name: is_app_installed
 description: A plugin that can judge whether an app is installed on device.it  has two methods, isappinstalled and jumpto.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/ventureli/is_app_installed
 environment:
   sdk: ">=2.7.0 <3.0.0"

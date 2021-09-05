@@ -1,3 +1,5 @@
+## 0.0.4
+* fix bug for some android system version
 ## 0.0.3
 * remove org.jetbrains:annotations-java5:15.0
 ## 0.0.2
