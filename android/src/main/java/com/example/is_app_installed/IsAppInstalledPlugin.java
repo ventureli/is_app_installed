@@ -65,18 +65,40 @@ public class IsAppInstalledPlugin implements FlutterPlugin, ActivityAware, Metho
     }
   }
 
+//  private boolean checkAppInstalled(Context context,String pkgName) {
+//    if (pkgName== null || pkgName.isEmpty()) {
+//      return false
+//    }
+//    PackageInfo packageInfo;
+//
+//  }
+
   private boolean checkAppInstalled(Context context, String pkgName) {
     if (pkgName == null || pkgName.isEmpty()) {
       return false;
     }
-    final PackageManager packageManager = context.getPackageManager();
-    List<PackageInfo> info = packageManager.getInstalledPackages(0);
-    if (info == null || info.isEmpty())
-      return false;
-    for (int i = 0; i < info.size(); i++) {
-      if (pkgName.equals(info.get(i).packageName)) {
-        return true;
+    PackageInfo packageInfo;
+    try {
+      packageInfo = context.getPackageManager().getPackageInfo(pkgName, 0);
+
+      if(packageInfo == null) {
+         //donothing
+      } else {
+        return true;//true为安装了，false为未安装
       }
+      final PackageManager packageManager = context.getPackageManager();
+
+      List<PackageInfo> info = packageManager.getInstalledPackages(0);
+      if (info == null || info.isEmpty())
+        return false;
+      for (int i = 0; i < info.size(); i++) {
+        if (pkgName.equals(info.get(i).packageName)) {
+          return true;
+        }
+      }
+    } catch (Exception e) {
+      packageInfo = null;
+      e.printStackTrace();
     }
     return false;
   }
