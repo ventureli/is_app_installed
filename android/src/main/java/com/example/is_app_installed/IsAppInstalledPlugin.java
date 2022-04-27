@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -79,20 +80,28 @@ public class IsAppInstalledPlugin implements FlutterPlugin, ActivityAware, Metho
     }
     PackageInfo packageInfo;
     try {
-      packageInfo = context.getPackageManager().getPackageInfo(pkgName, 0);
+      try{
+        packageInfo = context.getPackageManager().getPackageInfo(pkgName, PackageManager.GET_ACTIVITIES | PackageManager.GET_SERVICES);
 
-      if(packageInfo == null) {
-         //donothing
-      } else {
-        return true;//true为安装了，false为未安装
+        if(packageInfo == null) {
+          //donothing
+        } else {
+          return true;//true为安装了，false为未安装
+        }
+      }catch (Exception e){
+        packageInfo = null;
+        e.printStackTrace();
       }
+
       final PackageManager packageManager = context.getPackageManager();
 
       List<PackageInfo> info = packageManager.getInstalledPackages(0);
       if (info == null || info.isEmpty())
         return false;
       for (int i = 0; i < info.size(); i++) {
-        if (pkgName.equals(info.get(i).packageName)) {
+        String name = info.get(i).packageName;
+        Log.e("IsAppInstalledPlugin",name);
+        if (pkgName.equals(name)) {
           return true;
         }
       }
