@@ -1,3 +1,5 @@
+## 0.0.5
+* fix bug for some android 12
 ## 0.0.4
 * fix bug for some android system version
 ## 0.0.3
